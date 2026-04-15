@@ -1,19 +1,19 @@
 export const SLOT_LAYOUT = {
-  cellSize: 100, // Size of one slot cell
-  colGap: 50, // Gap between columns
-  rowGap: 25, // Gap between rows
-  startX: 80, // Starting X position of the slot grid
-  startY: 30, // Starting Y position of the slot grid
-  visibleRows: 3, // Number of visible rows
-  extraRows: 3, // Buffer rows above and below
-  canvasWidth: 560, // Canvas width
-  canvasHeight: 400, // Canvas height
+  cellSize: 100,
+  colGap: 50,
+  rowGap: 25,
+  startX: 80,
+  startY: 30,
+  visibleRows: 3,
+  extraRows: 3,
+  canvasWidth: 560,
+  canvasHeight: 400,
 } as const;
 
 export const SLOT_VALUES = {
-  betOptions: [5, 10, 20, 50], // Available bet values
-  initialBalance: 50, // Player starting balance
-  speed: 28, // Base spin speed
+  betOptions: [5, 10, 20, 50],
+  initialBalance: 50,
+  speed: 28,
 } as const;
 
 // Total number of rows per column, including buffers

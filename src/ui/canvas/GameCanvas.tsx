@@ -8,10 +8,8 @@ import styles from './GameCanvas.module.css';
 interface Props {
   // Loaded Pixi textures used by GameView to draw symbols
   textures: Record<string, Texture>;
-
   // Callback used to notify the parent when the controller is ready
   onReady: (controller: GameController) => void;
-
   // Callback fired on every game state change
   // so the React UI stays synced with the Pixi logic
   onStateChange: (state: GameState) => void;
@@ -22,7 +20,6 @@ const GameCanvas = ({ textures, onReady, onStateChange }: Props) => {
   const canvasRef = useRef<HTMLDivElement>(null);
 
   // Stores the Pixi app instance so it is not created multiple times
-  // and can be cleaned up correctly
   const appRef = useRef<Application | null>(null);
 
   useEffect(() => {
@@ -47,7 +44,7 @@ const GameCanvas = ({ textures, onReady, onStateChange }: Props) => {
         canvasRef.current.appendChild(app.canvas);
         appRef.current = app;
 
-        // Creates the controller that connects Pixi logic with the React UI
+        // Creates the controller that connects logic with the UI
         const controller = new GameController(app, textures, onStateChange);
         onReady(controller);
       });
@@ -55,7 +52,7 @@ const GameCanvas = ({ textures, onReady, onStateChange }: Props) => {
     return () => {
       mounted = false;
 
-      // Cleans up the Pixi app if it was already initialized
+      // Cleans up the Pixi
       if (appRef.current) {
         appRef.current.destroy(true);
         appRef.current = null;
@@ -67,10 +64,8 @@ const GameCanvas = ({ textures, onReady, onStateChange }: Props) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.frame}>
-        {/* Mount point where Pixi appends its canvas element */}
         <div className={styles.canvas} ref={canvasRef} />
 
-        {/* Decorative frame overlay displayed above the canvas */}
         <div className={styles.overlay} />
       </div>
     </div>

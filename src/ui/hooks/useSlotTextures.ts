@@ -2,10 +2,7 @@ import { Assets, Texture } from 'pixi.js';
 import { useEffect, useState } from 'react';
 
 const useSlotTextures = () => {
-  // Stores all loaded textures from the atlas and extra images
   const [textures, setTextures] = useState<Record<string, Texture>>({});
-
-  // Tracks whether all textures are ready to use
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -14,7 +11,6 @@ const useSlotTextures = () => {
     let mounted = true;
 
     const load = async () => {
-      // Loads the atlas and frame texture in parallel
       const [atlas, frame] = await Promise.all([
         Assets.load('/assets/texture.json'),
         Assets.load('/assets/frame.png'),
@@ -29,7 +25,6 @@ const useSlotTextures = () => {
         frame,
       });
 
-      // Marks textures as ready
       setLoaded(true);
     };
 

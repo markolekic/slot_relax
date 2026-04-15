@@ -8,7 +8,7 @@ import useSlotTextures from '../ui/hooks/useSlotTextures';
 import styles from './App.module.css';
 
 const App = () => {
-  // Main game state and actions from the custom hook
+  // Main game state and actions
   const {
     state,
     setState,
@@ -23,13 +23,12 @@ const App = () => {
     setBet,
   } = useGameState();
 
-  // Loads Pixi textures for slot symbols
+  // Loads Pixi textures
   const { textures, loaded } = useSlotTextures();
 
   // During a spin, click stops the reels; otherwise, it starts a new spin
   const handleSpinClick = spinning ? stop : spin;
 
-  // Shows a loader while textures are still loading
   if (!loaded) {
     return (
       <div className={styles.loading}>
@@ -68,7 +67,6 @@ const App = () => {
             onClick={handleSpinClick}
           />
 
-          {/* Shows the current balance */}
           <WinDisplay win={state.balance} />
         </section>
       </main>

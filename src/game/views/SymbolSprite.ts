@@ -4,19 +4,14 @@ import type { SymbolKey } from '../../types/symbol.types';
 export class SymbolSprite extends Container {
   // Pixi sprite that displays the current symbol texture
   private sprite: Sprite;
-
-  // Width of the slot cell this symbol should fit into
+  // Width of the slot cell
   private readonly cellWidth: number;
-
-  // Height of the slot cell this symbol should fit into
+  // Height of the slot cell
   private readonly cellHeight: number;
-
   // Loaded textures mapped by symbol key
   private readonly textures: Record<string, Texture>;
-
   // Original horizontal scale used as the base for animations
   private baseScaleX = 1;
-
   // Original vertical scale used as the base for animations
   private baseScaleY = 1;
 
@@ -24,7 +19,7 @@ export class SymbolSprite extends Container {
     cellWidth: number,
     cellHeight: number,
     textures: Record<string, Texture>,
-    symbol: SymbolKey,
+    symbol: SymbolKey
   ) {
     super();
 
@@ -57,7 +52,7 @@ export class SymbolSprite extends Container {
     // while preserving its original aspect ratio
     const scale = Math.min(
       this.cellWidth / texture.width,
-      this.cellHeight / texture.height,
+      this.cellHeight / texture.height
     );
 
     // Applies the calculated size to the sprite
@@ -76,7 +71,7 @@ export class SymbolSprite extends Container {
     // Applies a temporary scale multiplier for the win pulse effect
     this.sprite.scale.set(
       this.baseScaleX * multiplier,
-      this.baseScaleY * multiplier,
+      this.baseScaleY * multiplier
     );
 
     // Keeps the symbol centered while it grows or shrinks
@@ -92,10 +87,10 @@ export class SymbolSprite extends Container {
   }
 
   private centerSprite() {
-    // Centers the symbol horizontally inside its cell
+    // Centers the symbol horizontally
     this.sprite.x = (this.cellWidth - this.sprite.width) / 2;
 
-    // Centers the symbol vertically inside its cell
+    // Centers the symbol vertically
     this.sprite.y = (this.cellHeight - this.sprite.height) / 2;
   }
 }

@@ -7,20 +7,17 @@ import { GameView } from '../views/GameView';
 export class GameController {
   // Handles game logic and connects state with the Pixi view
   private gameView: GameView;
-
   // Current game state used by the UI
   private state: GameState;
-
   // Notifies the UI when the state changes
   private onStateChange: (state: GameState) => void;
-
   // Stores the win until the spin animation finishes
   private pendingWin = 0;
 
   constructor(
     app: Application,
     textures: Record<string, Texture>,
-    onStateChange: (state: GameState) => void,
+    onStateChange: (state: GameState) => void
   ) {
     this.onStateChange = onStateChange;
 

@@ -3,16 +3,12 @@ import styles from './BetSelector.module.css';
 type Props = {
   // Selected bet
   bet: number;
-
   // All bet values shown in the selector
   options: number[];
-
   // Bet values that the player cannot currently afford
   disabledBets: number[];
-
   // Whether the reels are currently spinning or stopping
   spinning: boolean;
-
   // Called when the player selects a different bet
   onChange: (value: number) => void;
 };
@@ -25,13 +21,12 @@ const BetSelector = ({
   onChange,
 }: Props) => {
   return (
-    // Groups bet buttons for accessibility
     <div className={styles.panel} role="group" aria-label="Bet selection">
       {options.map((value) => {
         // Marks the button that matches the current bet
         const isActive = bet === value;
 
-        // Disables bets during spin or when the player cannot afford them
+        // Disables bets when the player cannot afford them
         const isDisabled = spinning || disabledBets.includes(value);
 
         return (
@@ -44,7 +39,6 @@ const BetSelector = ({
             aria-label={`Select bet ${value}`}
             aria-pressed={isActive}
           >
-            {/* Visible bet value, hidden from screen readers because aria-label already describes it */}
             <span className={styles.label} aria-hidden="true">
               {value}
             </span>

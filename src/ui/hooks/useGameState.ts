@@ -4,18 +4,13 @@ import type { GameState } from '../../types/game.types';
 import { getAvailableBets, SLOT_VALUES } from '../../game/config/game.config';
 
 const initialState: GameState = {
-  // Player starting balance
   balance: SLOT_VALUES.initialBalance,
-  // Initial bet, using the first available option
   bet: SLOT_VALUES.betOptions[0],
-  // Last win amount, starting at zero
   win: 0,
-  // Game status: 'idle' means nothing is currently running
   status: 'idle',
 };
 
 export const useGameState = () => {
-  // React state that stores the current game state
   const [state, setState] = useState<GameState>(initialState);
 
   // Reference to the GameController, which owns the Pixi game logic
@@ -59,12 +54,9 @@ export const useGameState = () => {
 
   return {
     state,
-    // Passed to GameCanvas as onStateChange
     setState,
     bet,
-    // All bet options shown in the UI, including disabled ones
     allBets: [...SLOT_VALUES.betOptions],
-    // Bet options the player cannot afford, shown as disabled
     disabledBets: SLOT_VALUES.betOptions.filter((b) => b > state.balance),
     gameLost,
     spinning,

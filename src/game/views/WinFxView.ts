@@ -22,18 +22,14 @@ export class WinFxView extends Container {
   private isPlaying = false;
   private elapsedSeconds = 0;
 
-  // Rotation speed for the win effect sprite
+  // Rotation speed for the win effect
   private readonly rotationSpeedRadiansPerSecond = 1.2;
-
   // Small size increase so the effect appears slightly larger than the cell
   private readonly sizeBumpPixels = 20;
-
   // Currently active effect sprites on the scene
   private effectSprites: Sprite[] = [];
-
   // Sprite pool used to reuse sprites instead of creating new ones every time
   private spritePool: Sprite[] = [];
-
   // Stores the base scale for each sprite so pulse animation can build on it
   private baseScaleBySprite = new Map<Sprite, number>();
 
@@ -67,9 +63,7 @@ export class WinFxView extends Container {
     return new Sprite(this.texture);
   }
 
-  /**
-   * Resets a sprite and returns it to the pool for later reuse.
-   */
+  // Resets a sprite and returns it to the pool for later reuse
   private releaseSprite(sprite: Sprite) {
     // Hides the sprite and clears visual state from the previous animation
     sprite.visible = false;
@@ -91,10 +85,8 @@ export class WinFxView extends Container {
     };
   }
 
-  /**
-   * Calculates the base scale so the texture fits inside the cell,
-   * with a small extra bump to make the effect more visible.
-   */
+  // Calculates the base scale so the texture fits inside the cell,
+  // with a small extra bump to make the effect more visible.
   private getBaseScale(sprite: Sprite): number {
     // Target size inside the cell
     const maxSize =
@@ -106,7 +98,7 @@ export class WinFxView extends Container {
     // Fits the texture inside the target size while preserving aspect ratio
     const fittedScale = Math.min(
       maxSize / textureWidth,
-      maxSize / textureHeight,
+      maxSize / textureHeight
     );
 
     // Adds a small scale bump based on texture size
@@ -116,9 +108,7 @@ export class WinFxView extends Container {
     return fittedScale + bumpScale;
   }
 
-  /**
-   * Shows the win effect on the provided cells.
-   */
+  // Shows the win effect on the provided cells
   play(cells: WinCell[]) {
     // Clears any previous win effect before starting a new one
     this.stop();
@@ -157,9 +147,7 @@ export class WinFxView extends Container {
     Ticker.shared.add(this.handleTick);
   }
 
-  /**
-   * Stops the animation and returns all active sprites to the pool.
-   */
+  // Stops the animation and returns all active sprites to the pool.
   stop() {
     // Removes ticker updates only if the effect was playing
     if (this.isPlaying) {
@@ -181,7 +169,7 @@ export class WinFxView extends Container {
   /**
    * Runs on every frame:
    * - rotates each effect sprite
-   * - applies a subtle pulsing scale effect
+   * - applies a pulsing scale effect
    */
   private handleTick = (ticker: Ticker) => {
     // Converts frame delta from milliseconds to seconds
@@ -204,11 +192,8 @@ export class WinFxView extends Container {
     }
   };
 
-  /**
-   * Cleans up:
-   * - stops active animation
-   * - destroys sprites kept in the pool
-   */
+  // stops active animation
+  // destroys sprites kept in the pool
   override destroy(options?: DestroyOptions | boolean): void {
     // Stops animation and returns active sprites to the pool first
     this.stop();

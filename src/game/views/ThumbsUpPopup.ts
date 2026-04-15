@@ -9,13 +9,9 @@ const EPSILON = 0.0001;
 export class ThumbsUpPopup extends Container {
   // Main thumbs-up image
   private readonly sprite: Sprite;
-
-  // Text label used to display the win amount or game-over message
   private readonly winLabel: Text;
-
   // Time passed since the current animation started
   private elapsedSeconds = 0;
-
   // Whether the popup animation is currently active
   private isPlaying = false;
 
@@ -118,7 +114,7 @@ export class ThumbsUpPopup extends Container {
       if (this.elapsedSeconds <= introDuration) {
         // Normalized progress from 0 to 1
         const progress = clamp01(
-          this.elapsedSeconds / Math.max(EPSILON, introDuration),
+          this.elapsedSeconds / Math.max(EPSILON, introDuration)
         );
 
         // Fades the popup in
@@ -126,7 +122,7 @@ export class ThumbsUpPopup extends Container {
 
         // Scales from base size to peak size with easing
         this.scale.set(
-          this.baseScale + (peakScale - this.baseScale) * easeOut(progress),
+          this.baseScale + (peakScale - this.baseScale) * easeOut(progress)
         );
 
         return;
@@ -144,7 +140,7 @@ export class ThumbsUpPopup extends Container {
         // Normalized fade-out progress from 0 to 1
         const progress = clamp01(
           (this.elapsedSeconds - introDuration - holdDuration) /
-            Math.max(EPSILON, outroDuration),
+            Math.max(EPSILON, outroDuration)
         );
 
         // Smooth easing for the fade-out movement

@@ -4,14 +4,11 @@ import { getRandomReels, randomSymbol } from './reels.utils';
 
 // Describes a single winning line
 export interface WinLine {
-  // Row index checked in each reel column
   rows: number[];
-
-  // Payout multiplier for three matching symbols
-  multiplierThree: number;
-
-  // Payout multiplier for two adjacent matching symbols
+  // Payout for two matching symbols
   multiplierTwo: number;
+  // Payout for three matching symbols
+  multiplierThree: number;
 }
 
 // All supported winning lines
@@ -21,10 +18,7 @@ const WIN_LINES: WinLine[] = [
 
 // Result of a win evaluation
 export interface WinResult {
-  // Total win amount
   amount: number;
-
-  // Reel columns included in the win
   winCols: number[];
 }
 
@@ -120,7 +114,7 @@ export const getControlledReels = (cols = 3, rows = 3): SymbolKey[][] => {
       } else {
         // Changes the third reel symbol to avoid creating a three-symbol win
         const differentSymbols = SYMBOL_KEYS.filter(
-          (symbol) => symbol !== winSymbol,
+          (symbol) => symbol !== winSymbol
         );
 
         newCol[1] =
@@ -145,9 +139,7 @@ export const getControlledReels = (cols = 3, rows = 3): SymbolKey[][] => {
     if (matchesPrev || matchesNext) {
       const allowedSymbols = SYMBOL_KEYS.filter(
         (symbol) =>
-          symbol !== newCol[1] &&
-          symbol !== prevMiddle &&
-          symbol !== nextMiddle,
+          symbol !== newCol[1] && symbol !== prevMiddle && symbol !== nextMiddle
       );
 
       newCol[1] =
