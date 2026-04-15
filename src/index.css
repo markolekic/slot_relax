@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'GhulRegular';
+  src: url('/fonts/GhoulBoneRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  font-family: 'GhulRegular', system-ui, sans-serif;
+  background:
+    radial-gradient(ellipse at top, rgba(1, 80, 70, 0.5), rgba(5, 30, 25, 0.7)),
+    url('/assets/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
