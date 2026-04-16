@@ -99,7 +99,7 @@ export class ReelColumn extends Container {
   startStop(targetTopToBottom: SymbolKey[], fillerCount = 10) {
     // Adds random filler symbols before the final target symbols
     const fillerSymbols = Array.from({ length: fillerCount }, () =>
-      randomSymbol()
+      randomSymbol(),
     );
 
     // Reverses target symbols because new symbols enter from the top
@@ -121,14 +121,14 @@ export class ReelColumn extends Container {
       // Accelerates toward max speed during normal spinning
       this.speedPixelsPerSecond = Math.min(
         this.maxSpeed,
-        this.speedPixelsPerSecond + 4200 * deltaSeconds
+        this.speedPixelsPerSecond + 4200 * deltaSeconds,
       );
     } else if (this.stopPhase === 'feed') {
       // Slows down during the stop phase
       // but stays above the minimum speed while symbols are feeding
       this.speedPixelsPerSecond = Math.max(
         this.minStopSpeed,
-        this.speedPixelsPerSecond * (1 - 1.6 * deltaSeconds)
+        this.speedPixelsPerSecond * (1 - 1.6 * deltaSeconds),
       );
 
       // Starts the settle phase once all queued symbols are consumed
@@ -136,7 +136,7 @@ export class ReelColumn extends Container {
     } else if (this.stopPhase === 'settle') {
       this.speedPixelsPerSecond = 0;
       this.settleProgress = clamp01(
-        this.settleProgress + deltaSeconds / this.settleDurationSeconds
+        this.settleProgress + deltaSeconds / this.settleDurationSeconds,
       );
 
       const easedProgress = easeOut(this.settleProgress);
@@ -190,7 +190,7 @@ export class ReelColumn extends Container {
         this.cellHeight,
         this.cellHeight,
         this.textures,
-        symbol
+        symbol,
       );
 
       this.sprites.push(sprite);

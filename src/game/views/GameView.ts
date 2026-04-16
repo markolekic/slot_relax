@@ -61,7 +61,7 @@ export class GameView {
           bufferTop: 1,
           bufferBottom: 1,
         },
-        textures
+        textures,
       );
 
       reel.x = columnIndex * (SLOT_LAYOUT.cellSize + SLOT_LAYOUT.colGap);
@@ -105,7 +105,7 @@ export class GameView {
     this.isStopping = true;
     this.stopElapsedMs = 0;
     this.stopDelayMs = this.reels.map(
-      (_, reelIndex) => reelIndex * baseDelayMs
+      (_, reelIndex) => reelIndex * baseDelayMs,
     );
   }
 

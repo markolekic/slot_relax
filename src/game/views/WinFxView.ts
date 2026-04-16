@@ -98,7 +98,7 @@ export class WinFxView extends Container {
     // Fits the texture inside the target size while preserving aspect ratio
     const fittedScale = Math.min(
       maxSize / textureWidth,
-      maxSize / textureHeight
+      maxSize / textureHeight,
     );
 
     // Adds a small scale bump based on texture size

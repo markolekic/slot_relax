@@ -19,7 +19,7 @@ export class SymbolSprite extends Container {
     cellWidth: number,
     cellHeight: number,
     textures: Record<string, Texture>,
-    symbol: SymbolKey
+    symbol: SymbolKey,
   ) {
     super();
 
@@ -52,7 +52,7 @@ export class SymbolSprite extends Container {
     // while preserving its original aspect ratio
     const scale = Math.min(
       this.cellWidth / texture.width,
-      this.cellHeight / texture.height
+      this.cellHeight / texture.height,
     );
 
     // Applies the calculated size to the sprite
@@ -71,7 +71,7 @@ export class SymbolSprite extends Container {
     // Applies a temporary scale multiplier for the win pulse effect
     this.sprite.scale.set(
       this.baseScaleX * multiplier,
-      this.baseScaleY * multiplier
+      this.baseScaleY * multiplier,
     );
 
     // Keeps the symbol centered while it grows or shrinks

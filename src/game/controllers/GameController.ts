@@ -17,7 +17,7 @@ export class GameController {
   constructor(
     app: Application,
     textures: Record<string, Texture>,
-    onStateChange: (state: GameState) => void
+    onStateChange: (state: GameState) => void,
   ) {
     this.onStateChange = onStateChange;
 

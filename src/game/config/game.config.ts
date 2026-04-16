@@ -21,7 +21,7 @@ export const TOTAL_ROWS = SLOT_LAYOUT.visibleRows + SLOT_LAYOUT.extraRows * 2;
 
 // Returns all bets the player can currently afford
 export const getAvailableBets = (balance: number): number[] =>
-  (SLOT_VALUES.betOptions as unknown as number[]).filter((b) => b <= balance);
+  SLOT_VALUES.betOptions.filter((bet) => bet <= balance);
 
 // Probability that a spin will be a win
-export const winProbability = 0.5; // 50%
+export const winProbability = 0.3; // 30%
